@@ -29,11 +29,11 @@ namespace org.neurul.Common.Events
         {
             var m = Regex.Match(
                 @event.TypeName,
-                Common.Constants.Event.EventInfo.TypeName.Regex.Pattern,
+                Common.Constants.Event.TypeName.Regex.Pattern,
                 RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace
                 );
 
-            return m.Success ? m.Groups[Event.EventInfo.TypeName.Regex.CaptureName.EventName].Value : null;
+            return m.Success ? m.Groups[Event.TypeName.Regex.CaptureName.EventName].Value : null;
         }
 
         public static IEvent ToDomainEvent(this EventInfo @event, IEventSerializer serializer)

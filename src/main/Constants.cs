@@ -26,33 +26,24 @@ namespace org.neurul.Common.Constants
             }
         }
 
-        public struct EventInfo
+        public struct TypeName
         {
-            public struct TypeName
+            public struct Regex
             {
-                public struct Regex
-                {
-                    public const string Pattern = @"^
-org
-\x2E
-neurul
-\x2E
-Brain
-\x2E
-Domain
-\x2E
-Model
-\x2E
-Neurons
-\x2E
-(?<EventName>[^\x2C]+)
-\x2C
+                public const string Pattern = @"^
+(
+	[^\x2C\x2E]+
+	\x2E
+)+
+(
+	(?<EventName>[^\x2C\x2E]+)
+	\x2C
+)
 .*
 \z";
-                    public struct CaptureName
-                    {
-                        public const string EventName = "EventName";
-                    }
+                public struct CaptureName
+                {
+                    public const string EventName = "EventName";
                 }
             }
         }
