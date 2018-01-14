@@ -21,6 +21,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Http\**" />
+    <EmbeddedResource Remove="Http\**" />
+    <None Remove="Http\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CqrsLite" Version="0.18.1" />
   </ItemGroup>
 

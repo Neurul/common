@@ -66,11 +66,11 @@ namespace org.neurul.Common.Domain.Model
             }
         }
 
-        public static void AssertArgumentNotEmpty(string stringValue, string message)
+        public static void AssertArgumentNotEmpty(string stringValue, string message, string paramName)
         {
             if (stringValue == null || stringValue.Trim().Length == 0)
             {
-                throw new InvalidOperationException(message);
+                throw new ArgumentException(message, paramName);
             }
         }
 
@@ -203,9 +203,9 @@ namespace org.neurul.Common.Domain.Model
             AssertionConcern.AssertArgumentMatches(pattern, stringValue, message);
         }
 
-        protected void SelfAssertArgumentNotEmpty(string stringValue, string message)
+        protected void SelfAssertArgumentNotEmpty(string stringValue, string message, string paramName)
         {
-            AssertionConcern.AssertArgumentNotEmpty(stringValue, message);
+            AssertionConcern.AssertArgumentNotEmpty(stringValue, message, paramName);
         }
 
         protected void SelfAssertArgumentNotEquals(object object1, object object2, string message)
