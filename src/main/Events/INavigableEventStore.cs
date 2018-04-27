@@ -22,8 +22,6 @@ namespace org.neurul.Common.Events
 {
     public interface INavigableEventStore : IEventStore
     {
-        Task Close();
-
         Task<long> CountEventInfo();
 
         Task<EventInfo[]> GetAllEventInfoSince(long sequenceId);
@@ -32,6 +30,6 @@ namespace org.neurul.Common.Events
 
         Task<IEvent> GetLastEvent(Guid guid);
 
-        Task Initialize();
+        Task Initialize(string storeId);
     }
 }
