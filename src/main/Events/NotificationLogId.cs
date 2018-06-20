@@ -21,37 +21,37 @@ using System.Text.RegularExpressions;
 
 namespace org.neurul.Common.Events
 {
-    public class EventInfoLogId : Domain.Model.ValueObject
+    public class NotificationLogId : Domain.Model.ValueObject
     {
-        public static string GetEncoded(EventInfoLogId eventInfoLogId)
+        public static string GetEncoded(NotificationLogId notificationLogId)
         {
-            if (eventInfoLogId != null) return eventInfoLogId.Encoded;
+            if (notificationLogId != null) return notificationLogId.Encoded;
             else return null;
         }
 
-        public EventInfoLogId(long lowId, long highId)
+        public NotificationLogId(long lowId, long highId)
         {
             this.Low = lowId;
             this.High = highId;
         }
 
-        public EventInfoLogId(EventInfoLogId original)
+        public NotificationLogId(NotificationLogId original)
         {
             this.Low = original.Low;
             this.High = original.High;
         }
 
-        public static bool TryParse(string value, out EventInfoLogId logId)
+        public static bool TryParse(string value, out NotificationLogId logId)
         {
             bool result = false;
             logId = null;
 
-            var m = Regex.Match(value, Event.EventInfoLog.LogId.Regex.Pattern, RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace);
+            var m = Regex.Match(value, Event.NotificationLog.LogId.Regex.Pattern, RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace);
             if (m.Success)
             {
-                logId = new EventInfoLogId(
-                    long.Parse(m.Groups[Event.EventInfoLog.LogId.Regex.CaptureName.Low].Value),
-                    long.Parse(m.Groups[Event.EventInfoLog.LogId.Regex.CaptureName.High].Value)
+                logId = new NotificationLogId(
+                    long.Parse(m.Groups[Event.NotificationLog.LogId.Regex.CaptureName.Low].Value),
+                    long.Parse(m.Groups[Event.NotificationLog.LogId.Regex.CaptureName.High].Value)
                     );
                 result = true;
             }
@@ -67,29 +67,29 @@ namespace org.neurul.Common.Events
             get { return this.Low + "," + this.High; }
         }
 
-        public EventInfoLogId First(int eventInfosPerLog, long totalLogged)
+        public NotificationLogId First(int notificationsPerLog, long totalLogged)
         {
-            var first = new EventInfoLogId(1, eventInfosPerLog);
+            var first = new NotificationLogId(1, notificationsPerLog);
             if (totalLogged < 1)
                 first = null;
             return first;
         }
 
-        public EventInfoLogId Next(int eventInfosPerLog, long totalLogged)
+        public NotificationLogId Next(int notificationsPerLog, long totalLogged)
         {
             var nextLow = this.High + 1;
-            var nextHigh = nextLow + eventInfosPerLog - 1;
-            var next = new EventInfoLogId(nextLow, nextHigh);
+            var nextHigh = nextLow + notificationsPerLog - 1;
+            var next = new NotificationLogId(nextLow, nextHigh);
             if (nextLow > totalLogged)
                 next = null; 
             return next;
         }
 
-        public EventInfoLogId Previous(int eventInfosPerLog, long totalLogged)
+        public NotificationLogId Previous(int notificationsPerLog, long totalLogged)
         {
-            var previousLow = Math.Max(this.Low - eventInfosPerLog, 1);
+            var previousLow = Math.Max(this.Low - notificationsPerLog, 1);
             var previousHigh = this.Low - 1;
-            var previous = new EventInfoLogId(previousLow, previousHigh);
+            var previous = new NotificationLogId(previousLow, previousHigh);
             if (previousHigh <= 0 || previousLow > totalLogged)
                 previous = null;
             return previous;

@@ -16,19 +16,19 @@
 
 namespace org.neurul.Common.Events
 {
-    public class EventInfoLogInfo
+    public class NotificationLogInfo
     {
-        public EventInfoLogInfo(EventInfoLogId eventInfoLogId, long totalLogged)
+        public NotificationLogInfo(NotificationLogId notificationLogId, long totalLogged)
         {
-            this.eventInfoLogId = eventInfoLogId;
+            this.notificationLogId = notificationLogId;
             this.totalLogged = totalLogged;
         }
 
-        readonly EventInfoLogId eventInfoLogId;
+        readonly NotificationLogId notificationLogId;
 
-        public EventInfoLogId EventInfoLogId
+        public NotificationLogId NotificationLogId
         {
-            get { return eventInfoLogId; }
+            get { return notificationLogId; }
         }
 
         readonly long totalLogged;

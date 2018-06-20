@@ -15,20 +15,17 @@
 // Modifications copyright(C) 2017 ei8.works/Elmer Bool
 
 using CQRSlite.Events;
-using System;
 using System.Threading.Tasks;
 
 namespace org.neurul.Common.Events
 {
     public interface INavigableEventStore : IEventStore
     {
-        Task<long> CountEventInfo();
+        Task<long> CountNotifications();
 
-        Task<EventInfo[]> GetAllEventInfoSince(long sequenceId);
+        Task<Notification[]> GetAllNotificationsSince(long sequenceId);
 
-        Task<EventInfo[]> GetEventInfoRange(long lowSequenceId, long highSequenceId);
-
-        Task<IEvent> GetLastEvent(Guid guid);
+        Task<Notification[]> GetNotificationRange(long lowSequenceId, long highSequenceId);
 
         Task Initialize(string storeId);
     }

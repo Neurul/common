@@ -7,8 +7,8 @@ namespace org.neurul.Common.Events
 {
     public interface IEventSerializer
     {
-        IEvent Deserialize(string typeName, string eventData);
+        IAuthoredEvent Deserialize(string typeName, string eventData);
 
-        string Serialize(IEvent @event);
+        string Serialize(IAuthoredEvent @event);
     }
 }

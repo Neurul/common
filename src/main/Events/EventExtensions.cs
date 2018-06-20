@@ -7,25 +7,26 @@ namespace org.neurul.Common.Events
 {
     public static class EventExtensions
     {
-        public static EventInfo ToEventInfo(this IEvent @event, IEventSerializer serializer)
+        public static Notification ToNotification(this IAuthoredEvent @event, IEventSerializer serializer)
         {
             var contentJson = serializer.Serialize(@event);
 
             if (string.IsNullOrEmpty(contentJson))
                 throw new InvalidOperationException("Failed deserializing event.");
 
-            return new EventInfo()
+            return new Notification()
             {
                 Id = @event.Id.ToString(),
                 Data = contentJson,
                 TypeName = @event.GetType().AssemblyQualifiedName,
                 Timestamp = DateTimeOffset.Now.ToString("o"),
-                Version = @event.Version
+                Version = @event.Version,
+                AuthorId = @event.AuthorId
             };
         }
 
         
-        public static string GetEventName(this EventInfo @event)
+        public static string GetEventName(this Notification @event)
         {
             var m = Regex.Match(
                 @event.TypeName,
@@ -36,13 +37,13 @@ namespace org.neurul.Common.Events
             return m.Success ? m.Groups[Event.TypeName.Regex.CaptureName.EventName].Value : null;
         }
 
-        public static IEvent ToDomainEvent(this EventInfo @event, IEventSerializer serializer)
+        public static IAuthoredEvent ToDomainEvent(this Notification @event, IEventSerializer serializer)
         {
-            return ToDomainEvent<IEvent>(@event, serializer);
+            return ToDomainEvent<IAuthoredEvent>(@event, serializer);
         }
 
-        public static TEvent ToDomainEvent<TEvent>(this EventInfo @event, IEventSerializer serializer)
-            where TEvent : IEvent
+        public static TEvent ToDomainEvent<TEvent>(this Notification @event, IEventSerializer serializer)
+            where TEvent : IAuthoredEvent
         {
             return (TEvent)serializer.Deserialize(@event.TypeName, @event.Data);
         }

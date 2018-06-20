@@ -19,7 +19,7 @@ using System;
 
 namespace org.neurul.Common.Events
 {
-    public class EventInfo : IEquatable<EventInfo>
+    public class Notification : IEquatable<Notification>
     {
         [PrimaryKey, AutoIncrement]
         public long SequenceId { get; set; }
@@ -32,9 +32,11 @@ namespace org.neurul.Common.Events
 
         public int Version { get; set; }
 
+        public string AuthorId { get; set; }
+
         public string Data { get; set; }
 
-        public bool Equals(EventInfo other)
+        public bool Equals(Notification other)
         {
             if (object.ReferenceEquals(this, other)) return true;
             if (object.ReferenceEquals(null, other)) return false;
@@ -43,7 +45,7 @@ namespace org.neurul.Common.Events
 
         public override bool Equals(object obj)
         {
-            return Equals(obj as EventInfo);
+            return Equals(obj as Notification);
         }
 
         public override int GetHashCode()

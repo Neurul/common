@@ -6,7 +6,7 @@ namespace org.neurul.Common.Constants
 {
     public struct Event
     {
-        public struct EventInfoLog
+        public struct NotificationLog
         {
             public struct LogId
             {
