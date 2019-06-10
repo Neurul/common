@@ -36,7 +36,9 @@ namespace Common.Test
         protected abstract IEnumerable<IEvent> Given();
         protected abstract TCommand When();
         protected abstract THandler BuildHandler();
+        protected dynamic handler;
         protected virtual bool InvokeWhenOnConstruct => true;
+        protected virtual bool InvokeBuildWhenOnConstruct => true;
 
         protected Snapshot Snapshot { get; set; }
         protected IList<IEvent> EventDescriptors { get; set; }
@@ -53,28 +55,34 @@ namespace Common.Test
             Session = new Session(repository);
             Aggregate = GetAggregate().Result;
 
-            if (this.InvokeWhenOnConstruct)
-                Task.Run(() => this.InvokeWhen()).Wait();
+            if (this.InvokeBuildWhenOnConstruct)
+                Task.Run(() => this.InvokeBuildWhen()).Wait();
 
             Snapshot = snapshotstorage.Snapshot;
             PublishedEvents = eventpublisher.PublishedEvents;
             EventDescriptors = eventstorage.Events;
         }
 
+        protected async Task InvokeBuildWhen()
+        {
+            this.handler = BuildHandler();
+            if (this.InvokeWhenOnConstruct)
+                await InvokeWhen();
+        }
+
         protected async Task InvokeWhen()
         {
-            dynamic handler = BuildHandler();
-            if (handler is ICancellableCommandHandler<TCommand>)
+            if (this.handler is ICancellableCommandHandler<TCommand>)
             {
-                await handler.Handle(When(), new CancellationToken());
+                await this.handler.Handle(When(), new CancellationToken());
             }
-            else if (handler is ICommandHandler<TCommand>)
+            else if (this.handler is ICommandHandler<TCommand>)
             {
-                await handler.Handle(When());
+                await this.handler.Handle(When());
             }
             else
             {
-                throw new InvalidCastException($"{nameof(handler)} is not a command handler of type {typeof(TCommand)}");
+                throw new InvalidCastException($"{nameof(this.handler)} is not a command handler of type {typeof(TCommand)}");
             }
         }
 

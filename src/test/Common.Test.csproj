@@ -5,14 +5,14 @@
     <AssemblyName>org.neurul.Common.Test</AssemblyName>
     <RootNamespace>org.neurul.Common.Test</RootNamespace>
     <PackageId>Neurul.Common.Test</PackageId>
-    <PackageVersion>0.1.1</PackageVersion>
+    <PackageVersion>0.1.5</PackageVersion>
     <Authors>Elmer Roderick Niem Bool</Authors>
     <Description>Neurul Common Test</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>First release</PackageReleaseNotes>
-    <Copyright>Copyright 2018 (c) Neurul Software Foundation. All rights reserved.</Copyright>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <Copyright>Copyright 2019 (c) Neurul Software Foundation. All rights reserved.</Copyright>
     <PackageTags>neurul common test</PackageTags>
-    <Version>0.1.1</Version>
+    <Version>0.1.5</Version>
     <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
   </PropertyGroup>
 
