@@ -1,9 +1,10 @@
 ﻿using CQRSlite.Events;
+using System;
 
 namespace org.neurul.Common.Events
 {
     public interface IAuthoredEvent : IEvent
     {
-        string AuthorId { get; set; }
+        Guid AuthorId { get; set; }
     }
 }

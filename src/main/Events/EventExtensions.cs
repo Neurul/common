@@ -21,7 +21,7 @@ namespace org.neurul.Common.Events
                 TypeName = @event.GetType().AssemblyQualifiedName,
                 Timestamp = DateTimeOffset.Now.ToString("o"),
                 Version = @event.Version,
-                AuthorId = @event.AuthorId
+                AuthorId = @event.AuthorId.ToString()
             };
         }
 
