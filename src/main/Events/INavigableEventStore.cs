@@ -26,7 +26,5 @@ namespace org.neurul.Common.Events
         Task<Notification[]> GetAllNotificationsSince(long sequenceId);
 
         Task<Notification[]> GetNotificationRange(long lowSequenceId, long highSequenceId);
-
-        Task Initialize(string storeId);
     }
 }
