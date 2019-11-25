@@ -88,6 +88,11 @@ rel
                     Self
                 }
             }
+
+            public struct TotalCount
+            {
+                public const string Key = "X-total-count";
+            }
         }
     }
 }

@@ -25,7 +25,7 @@ namespace org.neurul.Common.Events
     public class NotificationLog
     {
         public NotificationLog(NotificationLogId notificationLogId, NotificationLogId firstNotificationLogId, NotificationLogId nextNotificationLogId, 
-            NotificationLogId previousNotificationLogId, IEnumerable<Notification> notificationList, bool isArchived)
+            NotificationLogId previousNotificationLogId, IEnumerable<Notification> notificationList, bool isArchived, int totalCount)
         {
             AssertionConcern.AssertArgumentNotNull(notificationLogId, nameof(notificationLogId));
 
@@ -35,6 +35,7 @@ namespace org.neurul.Common.Events
             this.previousNotificationLogId = previousNotificationLogId;
             this.notificationList = new ReadOnlyCollection<Notification>(notificationList.ToArray());
             this.isArchived = isArchived;
+            this.TotalCount = totalCount;
         }
 
         private readonly NotificationLogId notificationLogId;
@@ -58,6 +59,8 @@ namespace org.neurul.Common.Events
         {
             get { return this.notificationList.Count; }
         }
+
+        public int TotalCount { get; private set; }
 
         [JsonIgnore]
         public NotificationLogId DecodedNotificationLogId
