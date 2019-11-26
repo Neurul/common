@@ -28,8 +28,10 @@ namespace org.neurul.Common.Events
 
         public string TypeName { get; set; }
 
+        [Indexed(Name = "IdVersion", Order = 1,Unique = true)]
         public string Id { get; set; }
 
+        [Indexed(Name = "IdVersion", Order = 2, Unique = true)]
         public int Version { get; set; }
 
         public string AuthorId { get; set; }
