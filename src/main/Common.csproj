@@ -10,7 +10,7 @@
     <Description>Neurul Common</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>Updated AuthorId type to Guid.</PackageReleaseNotes>
-    <Copyright>Copyright 2019 (c) Neurul Software Foundation. All rights reserved.</Copyright>
+    <Copyright>Copyright 2020 (c) Neurul Software Foundation. All rights reserved.</Copyright>
     <PackageTags>neurul common</PackageTags>
     <Version>0.1.15</Version>
     <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
