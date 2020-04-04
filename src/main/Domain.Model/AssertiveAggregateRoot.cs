@@ -31,6 +31,8 @@ namespace org.neurul.Common.Domain.Model
             }
             base.ApplyEvent(@event);
         }
+
+        private void Apply(UnrecognizedEvent e) {}
     }
 
     internal static class Helper
