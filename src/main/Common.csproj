@@ -2,22 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>org.neurul.Common</AssemblyName>
-    <RootNamespace>org.neurul.Common</RootNamespace>
-    <PackageId>Neurul.Common</PackageId>
-    <PackageVersion>0.1.17</PackageVersion>
+    <AssemblyName>neurUL.Common</AssemblyName>
+    <RootNamespace>neurUL.Common</RootNamespace>
+    <PackageId>neurUL.Common</PackageId>
+    <PackageVersion>0.1.19</PackageVersion>
     <Authors>Elmer Roderick Niem Bool</Authors>
-    <Description>Neurul Common</Description>
+    <Description>neurUL Common</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>Updated AuthorId type to Guid.</PackageReleaseNotes>
-    <Copyright>Copyright 2020 (c) Neurul Software Foundation. All rights reserved.</Copyright>
-    <PackageTags>neurul common</PackageTags>
-    <Version>0.1.17</Version>
+    <Copyright>Copyright 2020 (c) neurUL Software Foundation. All rights reserved.</Copyright>
+    <PackageTags>neurUL common</PackageTags>
+    <Version>0.1.19</Version>
     <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard2.0\org.neurul.Common.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netstandard2.0\neurUL.Common.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

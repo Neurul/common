@@ -9,8 +9,8 @@
     <ProjectGuid>{B9F59076-7CBC-4821-8225-F452E6834C6E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>org.neurul.Common.Http.Test</RootNamespace>
-    <AssemblyName>org.neurul.Common.Http.Test</AssemblyName>
+    <RootNamespace>neurUL.Common.Http.Test</RootNamespace>
+    <AssemblyName>neurUL.Common.Http.Test</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

@@ -14,7 +14,7 @@
 // 
 // Modifications copyright(C) 2017 ei8.works/Elmer Bool
 
-namespace org.neurul.Common.Domain.Model
+namespace neurUL.Common.Domain.Model
 {
     using System;
     using System.IO;

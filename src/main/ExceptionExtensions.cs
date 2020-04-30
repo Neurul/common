@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace org.neurul.Common
+namespace neurUL.Common
 {
     // https://stackoverflow.com/questions/8039660/net-how-to-convert-exception-to-string
     public static class ExceptionExtensions

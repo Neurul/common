@@ -27,7 +27,7 @@
 using System;
 using System.Net.Http;
 
-namespace org.neurul.Common.Http
+namespace neurUL.Common.Http
 {
     public class HttpRequestExceptionEx : HttpRequestException
     {

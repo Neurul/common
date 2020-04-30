@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace org.neurul.Common.Domain.Model
+namespace neurUL.Common.Domain.Model
 {
     public abstract class AssertiveAggregateRoot : AggregateRoot
     {

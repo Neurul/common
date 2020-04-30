@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace org.neurul.Common.Domain.Model
+namespace neurUL.Common.Domain.Model
 {
     public class UnrecognizedEvent : IEvent
     {

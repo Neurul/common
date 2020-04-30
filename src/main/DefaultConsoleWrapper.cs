@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace org.neurul.Common
+namespace neurUL.Common
 {
     public class DefaultConsoleWrapper : IConsoleWrapper
     {

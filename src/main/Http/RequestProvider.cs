@@ -37,7 +37,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace org.neurul.Common.Http
+namespace neurUL.Common.Http
 {
     public class RequestProvider : IRequestProvider
     {

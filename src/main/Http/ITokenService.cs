@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace org.neurul.Common.Http
+namespace neurUL.Common.Http
 {
     public interface ITokenService
     {

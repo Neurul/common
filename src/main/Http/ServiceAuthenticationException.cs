@@ -26,7 +26,7 @@
 
 using System;
 
-namespace org.neurul.Common.Http
+namespace neurUL.Common.Http
 {
     public class ServiceAuthenticationException : Exception
     {

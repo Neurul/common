@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace org.neurul.Common.Constants
+namespace neurUL.Common.Constants
 {
     public struct Response
     {

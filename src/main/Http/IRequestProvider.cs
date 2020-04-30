@@ -28,7 +28,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace org.neurul.Common.Http
+namespace neurUL.Common.Http
 {
     public interface IRequestProvider
     {

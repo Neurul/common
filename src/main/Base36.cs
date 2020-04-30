@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace org.neurul.Common
+namespace neurUL.Common
 {
 	/// <summary>
 	/// Class representing a Base36 number

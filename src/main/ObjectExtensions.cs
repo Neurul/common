@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace org.neurul.Common
+namespace neurUL.Common
 {
     public static class ObjectExtensions
     {
