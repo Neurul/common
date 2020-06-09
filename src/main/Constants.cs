@@ -2,53 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace org.neurul.Common.Constants
+namespace neurUL.Common.Constants
 {
-    public struct Event
-    {
-        public struct NotificationLog
-        {
-            public struct LogId
-            {
-                public struct Regex
-                {
-                    public const string Pattern = @"^
-(?<Low>[\d]+)
-\x2C
-(?<High>[\d]+)
-\z";
-                    public struct CaptureName
-                    {
-                        public const string Low = "Low";
-                        public const string High = "High";
-                    }
-                }
-            }
-        }
-
-        public struct TypeName
-        {
-            public struct Regex
-            {
-                public const string Pattern = @"^
-(
-	[^\x2C\x2E]+
-	\x2E
-)+
-(
-	(?<EventName>[^\x2C\x2E]+)
-	\x2C
-)
-.*
-\z";
-                public struct CaptureName
-                {
-                    public const string EventName = "EventName";
-                }
-            }
-        }
-    }
-
     public struct Response
     {
         public struct Header
@@ -87,6 +42,11 @@ rel
                     Previous,
                     Self
                 }
+            }
+
+            public struct TotalCount
+            {
+                public const string Key = "X-total-count";
             }
         }
     }

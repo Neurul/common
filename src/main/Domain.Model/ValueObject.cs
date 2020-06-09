@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace org.neurul.Common.Domain.Model
+namespace neurUL.Common.Domain.Model
 {
     public abstract class ValueObject
     {

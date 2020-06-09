@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace org.neurul.Common.Http
+namespace neurUL.Common.Http
 {
     public class TinyIoCServiceLocator : IServiceProvider
     {

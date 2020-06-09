@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace org.neurul.Common.Test
+namespace neurUL.Common.Test
 {
     public abstract class TestContext<T>
     {

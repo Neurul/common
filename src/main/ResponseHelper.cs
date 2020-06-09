@@ -1,9 +1,9 @@
-﻿using org.neurul.Common.Constants;
-using org.neurul.Common.Domain.Model;
+﻿using neurUL.Common.Constants;
+using neurUL.Common.Domain.Model;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace org.neurul.Common
+namespace neurUL.Common
 {
     public static class ResponseHelper
     {
