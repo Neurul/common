@@ -38,10 +38,12 @@ namespace neurUL.Common.Http
 
         Task<TResult> PostAsync<TResult>(string uri, string data, string clientId, string clientSecret);
 
-        Task<TResult> PutAsync<TResult>(string uri, TResult data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers);
+        Task<TResult> PostAsync<TResult>(string uri, object data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers);
 
-        Task<TResult> PatchAsync<TResult>(string uri, TResult data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers);
+        Task<TResult> PutAsync<TResult>(string uri, object data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers);
 
-        Task<TResult> DeleteAsync<TResult>(string uri, TResult data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers);
+        Task<TResult> PatchAsync<TResult>(string uri, object data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers);
+
+        Task<TResult> DeleteAsync<TResult>(string uri, object data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers);
     }
 }

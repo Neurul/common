@@ -109,9 +109,19 @@ namespace neurUL.Common.Http
             return result;
         }
 
-        public async Task<TResult> PutAsync<TResult>(string uri, TResult data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers)
-        {
-            return await RequestProvider.SendRequest(
+        public async Task<TResult> PostAsync<TResult>(string uri, object data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers)
+            => await RequestProvider.SendRequest<TResult>(
+                this.CreateReInitHttpClient(bearerToken),
+                WebRequestMethods.Http.Post,
+                uri,
+                this.serializerSettings,
+                data,
+                token,
+                headers
+                );
+
+        public async Task<TResult> PutAsync<TResult>(string uri, object data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers)
+            => await RequestProvider.SendRequest<TResult>(
                 this.CreateReInitHttpClient(bearerToken),
                 WebRequestMethods.Http.Put,
                 uri,
@@ -120,11 +130,9 @@ namespace neurUL.Common.Http
                 token,
                 headers
                 );
-        }
 
-        public async Task<TResult> PatchAsync<TResult>(string uri, TResult data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers)
-        {
-            return await RequestProvider.SendRequest(
+        public async Task<TResult> PatchAsync<TResult>(string uri, object data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers)
+            => await RequestProvider.SendRequest<TResult>(
                 this.CreateReInitHttpClient(bearerToken),
                 "PATCH",
                 uri,
@@ -133,11 +141,9 @@ namespace neurUL.Common.Http
                 token,
                 headers
                 );
-        }
 
-        public async Task<TResult> DeleteAsync<TResult>(string uri, TResult data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers)
-        {
-            return await RequestProvider.SendRequest(
+        public async Task<TResult> DeleteAsync<TResult>(string uri, object data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers)
+            => await RequestProvider.SendRequest<TResult>(
                 this.CreateReInitHttpClient(bearerToken),
                 "DELETE",
                 uri,
@@ -146,9 +152,8 @@ namespace neurUL.Common.Http
                 token,
                 headers
                 );
-        }
 
-        private static async Task<TResult> SendRequest<TResult>(HttpClient httpClient, string method, string uri, JsonSerializerSettings serializerSettings, TResult data = default(TResult), CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers)
+        private static async Task<TResult> SendRequest<TResult>(HttpClient httpClient, string method, string uri, JsonSerializerSettings serializerSettings, object data = default, CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers)
         {
             HttpRequestMessage msg = new HttpRequestMessage
             {
@@ -157,7 +162,7 @@ namespace neurUL.Common.Http
             };
             headers.ToList().ForEach(h => msg.Headers.Add(h.Key, h.Value));
 
-            if (!EqualityComparer<TResult>.Default.Equals(data, default(TResult)))
+            if (data != null)
             {
                 var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
@@ -172,7 +177,7 @@ namespace neurUL.Common.Http
             TResult result = default;
             
             if (!string.IsNullOrEmpty(serialized))
-                result = await Task.Run(() => JsonConvert.DeserializeObject<TResult>(serialized, serializerSettings));
+                result = JsonConvert.DeserializeObject<TResult>(serialized, serializerSettings);
 
             return result;
         }
