@@ -57,7 +57,7 @@ namespace neurUL.Common.Http
         public async Task<TResult> GetAsync<TResult>(string uri, string bearerToken = "", CancellationToken token = default(CancellationToken))
         {
             return await RequestProvider.SendRequest<TResult>(
-                this.CreateReInitHttpClient(bearerToken),
+                this.GetHttpClientWithBearerToken(bearerToken),
                 WebRequestMethods.Http.Get,
                 uri,
                 this.serializerSettings,
@@ -67,7 +67,7 @@ namespace neurUL.Common.Http
 
         public async Task<TResult> PostAsync<TResult>(string uri, TResult data, string token = "", string header = "")
         {
-            HttpClient httpClient = CreateReInitHttpClient(token);
+            HttpClient httpClient = GetHttpClientWithBearerToken(token);
 
             if (!string.IsNullOrEmpty(header))
             {
@@ -89,7 +89,7 @@ namespace neurUL.Common.Http
 
         public async Task<TResult> PostAsync<TResult>(string uri, string data, string clientId, string clientSecret)
         {
-            HttpClient httpClient = CreateReInitHttpClient(string.Empty);
+            HttpClient httpClient = GetHttpClientWithBearerToken(string.Empty);
 
             if (!string.IsNullOrWhiteSpace(clientId) && !string.IsNullOrWhiteSpace(clientSecret))
             {
@@ -111,7 +111,7 @@ namespace neurUL.Common.Http
 
         public async Task<TResult> PostAsync<TResult>(string uri, object data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers)
             => await RequestProvider.SendRequest<TResult>(
-                this.CreateReInitHttpClient(bearerToken),
+                this.GetHttpClientWithBearerToken(bearerToken),
                 WebRequestMethods.Http.Post,
                 uri,
                 this.serializerSettings,
@@ -122,7 +122,7 @@ namespace neurUL.Common.Http
 
         public async Task<TResult> PutAsync<TResult>(string uri, object data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers)
             => await RequestProvider.SendRequest<TResult>(
-                this.CreateReInitHttpClient(bearerToken),
+                this.GetHttpClientWithBearerToken(bearerToken),
                 WebRequestMethods.Http.Put,
                 uri,
                 this.serializerSettings,
@@ -133,7 +133,7 @@ namespace neurUL.Common.Http
 
         public async Task<TResult> PatchAsync<TResult>(string uri, object data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers)
             => await RequestProvider.SendRequest<TResult>(
-                this.CreateReInitHttpClient(bearerToken),
+                this.GetHttpClientWithBearerToken(bearerToken),
                 "PATCH",
                 uri,
                 this.serializerSettings,
@@ -144,7 +144,7 @@ namespace neurUL.Common.Http
 
         public async Task<TResult> DeleteAsync<TResult>(string uri, object data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers)
             => await RequestProvider.SendRequest<TResult>(
-                this.CreateReInitHttpClient(bearerToken),
+                this.GetHttpClientWithBearerToken(bearerToken),
                 "DELETE",
                 uri,
                 this.serializerSettings,
@@ -184,21 +184,13 @@ namespace neurUL.Common.Http
 
         private HttpClient httpClient;
 
-        private HttpClient CreateReInitHttpClient(string bearerToken = "")
+        private HttpClient GetHttpClientWithBearerToken(string bearerToken = "")
         {
-            if (this.httpClient == null)
-                this.httpClient = new HttpClient();
-            else
-                this.httpClient.DefaultRequestHeaders.Clear();
-
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
+            var result = this.HttpClient;
             if (!string.IsNullOrEmpty(bearerToken))
-            {
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
-            }
+                result.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
 
-            return httpClient;
+            return result;
         }
 
         private void AddHeaderParameter(HttpClient httpClient, string parameter)
@@ -236,6 +228,21 @@ namespace neurUL.Common.Http
                 }
 
                 throw new HttpRequestExceptionEx(response.StatusCode, content);
+            }
+        }
+
+        public HttpClient HttpClient
+        {
+            get
+            {
+                if (this.httpClient == null)
+                    this.httpClient = new HttpClient();
+                else
+                    this.httpClient.DefaultRequestHeaders.Clear();
+
+                this.httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                return this.httpClient;
             }
         }
     }

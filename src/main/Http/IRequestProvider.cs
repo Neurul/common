@@ -25,6 +25,7 @@
 // Modifications copyright(C) 2020 ei8/Elmer Bool
 
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -45,5 +46,7 @@ namespace neurUL.Common.Http
         Task<TResult> PatchAsync<TResult>(string uri, object data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers);
 
         Task<TResult> DeleteAsync<TResult>(string uri, object data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers);
+
+        HttpClient HttpClient { get; }
     }
 }
