@@ -48,5 +48,7 @@ namespace neurUL.Common.Http
         Task<TResult> DeleteAsync<TResult>(string uri, object data, string bearerToken = "", CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers);
 
         HttpClient HttpClient { get; }
+
+        void SetHttpClientHandler(HttpClientHandler clientHandler);
     }
 }

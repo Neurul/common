@@ -42,6 +42,7 @@ namespace neurUL.Common.Http
     public class RequestProvider : IRequestProvider
     {
         private readonly JsonSerializerSettings serializerSettings;
+        private HttpClientHandler clientHandler;
 
         public RequestProvider()
         {
@@ -236,7 +237,7 @@ namespace neurUL.Common.Http
             get
             {
                 if (this.httpClient == null)
-                    this.httpClient = new HttpClient();
+                    this.httpClient = new HttpClient(this.clientHandler);
                 else
                     this.httpClient.DefaultRequestHeaders.Clear();
 
@@ -244,6 +245,11 @@ namespace neurUL.Common.Http
 
                 return this.httpClient;
             }
+        }
+
+        public void SetHttpClientHandler(HttpClientHandler clientHandler)
+        {
+            this.clientHandler = clientHandler;
         }
     }
 }
