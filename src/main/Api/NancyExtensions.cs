@@ -50,7 +50,7 @@ namespace neurUL.Common.Api
                 bodyAsObject = JsonConvert.DeserializeObject(jsonString);
                 bodyAsDictionary = JObject.Parse(jsonString).ToObject<Dictionary<string, object>>();
                 missingRequiredFields = requiredFields.Where(s => !bodyAsDictionary.ContainsKey(s)).ToArray();
-                alternativeRequiredFieldNotFound = !alternativeRequiredFields.Any(arf => bodyAsDictionary.ContainsKey(arf));
+                alternativeRequiredFieldNotFound = alternativeRequiredFields.Any() && !alternativeRequiredFields.Any(arf => bodyAsDictionary.ContainsKey(arf));
             }
             else
                 missingRequiredFields = requiredFields;
