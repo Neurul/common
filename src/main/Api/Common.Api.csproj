@@ -21,6 +21,6 @@
     <ProjectReference Include="..\Common.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="nancy" Version="2.0.0-clinteastwood" />
+    <PackageReference Include="nancy" Version="2.0.0" />
   </ItemGroup>
 </Project>
