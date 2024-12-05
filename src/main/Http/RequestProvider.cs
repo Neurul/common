@@ -39,6 +39,7 @@ using System.Threading.Tasks;
 
 namespace neurUL.Common.Http
 {
+    [Obsolete("Use IHttpClientFactory instead? See ei8.EventSourcing.Client.")]
     public class RequestProvider : IRequestProvider
     {
         private readonly JsonSerializerSettings serializerSettings;
@@ -79,7 +80,7 @@ namespace neurUL.Common.Http
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage response = await httpClient.PostAsync(uri, content);
 
-            await HandleResponse(response);
+            await RequestProvider.HandleResponse(response, uri);
             string serialized = await response.Content.ReadAsStringAsync();
 
             TResult result = await Task.Run(() =>
@@ -101,7 +102,7 @@ namespace neurUL.Common.Http
             content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
             HttpResponseMessage response = await httpClient.PostAsync(uri, content);
 
-            await HandleResponse(response);
+            await RequestProvider.HandleResponse(response, uri);
             string serialized = await response.Content.ReadAsStringAsync();
 
             TResult result = await Task.Run(() =>
@@ -156,6 +157,7 @@ namespace neurUL.Common.Http
 
         private static async Task<TResult> SendRequest<TResult>(HttpClient httpClient, string method, string uri, JsonSerializerSettings serializerSettings, object data = default, CancellationToken token = default(CancellationToken), params KeyValuePair<string, string>[] headers)
         {
+
             HttpRequestMessage msg = new HttpRequestMessage
             {
                 Method = new HttpMethod(method),
@@ -172,7 +174,7 @@ namespace neurUL.Common.Http
 
             var response = await httpClient.SendAsync(msg, token);
 
-            await RequestProvider.HandleResponse(response);
+            await RequestProvider.HandleResponse(response, uri);
             string serialized = await response.Content.ReadAsStringAsync();
 
             TResult result = default;
@@ -216,19 +218,20 @@ namespace neurUL.Common.Http
             httpClient.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue(clientId, clientSecret);
         }
 
-        private async static Task HandleResponse(HttpResponseMessage response)
+        private async static Task HandleResponse(HttpResponseMessage response, string uri)
         {
             if (!response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
+                var exceptionMessage = $"Uri: {uri}; Response: {content}";
 
                 if (response.StatusCode == HttpStatusCode.Forbidden ||
                     response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    throw new ServiceAuthenticationException(content);
+                    throw new ServiceAuthenticationException(exceptionMessage);
                 }
 
-                throw new HttpRequestExceptionEx(response.StatusCode, content);
+                throw new HttpRequestExceptionEx(response.StatusCode, exceptionMessage);
             }
         }
 
