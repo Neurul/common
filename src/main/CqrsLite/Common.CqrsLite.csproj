@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	  <AssemblyName>neurUL.Common.CqrsLite</AssemblyName>
+	  <RootNamespace>neurUL.Common.CqrsLite</RootNamespace>
+	  <PackageId>neurUL.Common.CqrsLite</PackageId>
+	  <PackageVersion>0.1.0</PackageVersion>
+	  <Authors>Elmer Roderick Niem Bool</Authors>
+	  <Description>neurUL Common Cqrs Lite</Description>
+	  <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+	  <PackageReleaseNotes>Initial.</PackageReleaseNotes>
+	  <Copyright>Copyright 2025 (c) neurUL Software Foundation. All rights reserved.</Copyright>
+	  <PackageTags>neurUL common cqrslite</PackageTags>
+	  <Version>0.1.0</Version>
+	  <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CqrsLite" Version="0.18.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Common.csproj" />
+	</ItemGroup>
+
+</Project>

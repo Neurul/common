@@ -1,12 +1,12 @@
 ﻿using CQRSlite.Domain;
 using CQRSlite.Events;
+using neurUL.Common.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
-namespace neurUL.Common.Domain.Model
+namespace neurUL.Common.CqrsLite
 {
     public abstract class AssertiveAggregateRoot : AggregateRoot
     {

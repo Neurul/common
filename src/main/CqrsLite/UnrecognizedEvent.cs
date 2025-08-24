@@ -1,9 +1,7 @@
 ﻿using CQRSlite.Events;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace neurUL.Common.Domain.Model
+namespace neurUL.Common.CqrsLite
 {
     public class UnrecognizedEvent : IEvent
     {

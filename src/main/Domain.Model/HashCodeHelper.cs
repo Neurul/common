@@ -14,10 +14,7 @@
 // 
 // Modifications copyright(C) 2017 ei8.works/Elmer Bool
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace neurUL.Common.Domain.Model
 {

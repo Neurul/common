@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace neurUL.Common
+namespace neurUL.Common.Newtonsoft.Json
 {
     public static class JsonHelper
     {
